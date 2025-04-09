@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반지 시뮬레이션</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>반지 시뮬레이션</h1>
+        
+        <div class="upload-section">
+            <input type="file" id="handImage" accept="image/*" class="file-input">
+            <label for="handImage" class="upload-btn">손 사진 업로드</label>
+        </div>
+
+        <div class="preview-section">
+            <canvas id="handCanvas"></canvas>
+        </div>
+
+        <div class="finger-selection">
+            <h2>손가락 선택</h2>
+            <div class="finger-buttons">
+                <button data-finger="thumb">엄지</button>
+                <button data-finger="index">검지</button>
+                <button data-finger="middle">중지</button>
+                <button data-finger="ring">약지</button>
+                <button data-finger="pinky">새끼손가락</button>
+            </div>
+        </div>
+
+        <div class="ring-selection">
+            <h2>반지 선택</h2>
+            <div class="ring-list" id="ringList">
+                <!-- 반지 목록이 여기에 동적으로 추가됩니다 -->
+            </div>
+            <div class="selected-ring-preview" id="selectedRingPreview" style="display: none;">
+                <h3>선택된 반지</h3>
+                <img id="selectedRingImage" src="" alt="선택된 반지">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
