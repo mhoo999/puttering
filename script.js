@@ -86,28 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 반지 선택 처리
     function selectRing(ringSrc) {
-        // 이전에 선택된 반지의 selected 클래스 제거
-        document.querySelectorAll('.ring-item').forEach(item => {
-            item.classList.remove('selected');
-        });
+        const ringItems = document.querySelectorAll('.ring-item');
+        ringItems.forEach(item => item.classList.remove('selected'));
 
-        // 새로 선택된 반지에 selected 클래스 추가
-        const selectedItem = Array.from(document.querySelectorAll('.ring-item')).find(item => 
-            item.querySelector('img').src === ringSrc
-        );
-        if (selectedItem) {
-            selectedItem.classList.add('selected');
+        const selectedRingItem = document.querySelector(`img[src='${ringSrc}']`);
+        if (selectedRingItem) {
+            selectedRingItem.parentElement.classList.add('selected');
+            selectedRing = ringSrc;
+            drawRing();
+        } else {
+            console.error('Selected ring item not found');
         }
-
-        selectedRing = ringSrc;
-        
-        // 선택된 반지 미리보기 업데이트
-        const preview = document.getElementById('selectedRingPreview');
-        const previewImage = document.getElementById('selectedRingImage');
-        previewImage.src = ringSrc;
-        preview.style.display = 'block';
-
-        drawRing();
     }
 
     // MediaPipe 결과 처리
