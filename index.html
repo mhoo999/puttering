@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
 </head>
+
 <body>
     <div class="container">
-        <h1>반지 시뮬레이션</h1>
-        
+        <!-- 로고 추가 -->
+        <header>
+            <h1>Puttering</h1>
+        </header>
+
         <div class="upload-section">
             <input type="file" id="handImage" accept="image/*" class="file-input">
             <label for="handImage" class="upload-btn">손 사진 업로드</label>
@@ -46,4 +51,5 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html> 
+
+</html>

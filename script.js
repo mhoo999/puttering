@@ -27,29 +27,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // 반지 이미지 목록을 동적으로 로드
     function loadRingImages() {
         ringList.innerHTML = '';
+        
+        // assets 폴더에서 ring_로 시작하는 모든 PNG 이미지를 찾아서 로드
+        const ringImages = [
+            'assets/ring_00.png',
+            'assets/ring_01.png',
+            'assets/ring_02.png',
+            'assets/ring_03.png'
+        ];
 
-        // assets 폴더에서 ring_로 시작하는 모든 PNG 이미지를 동적으로 로드
-        fetch('assets/')
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const htmlDocument = parser.parseFromString(data, 'text/html');
-                const imageElements = htmlDocument.querySelectorAll('a');
-                imageElements.forEach(element => {
-                    const href = element.getAttribute('href');
-                    if (href && href.startsWith('ring_') && href.endsWith('.png')) {
-                        const ringSrc = `assets/${href}`;
-                        const ringItem = document.createElement('div');
-                        ringItem.className = 'ring-item';
-                        const img = document.createElement('img');
-                        img.src = ringSrc;
-                        img.alt = '반지';
-                        ringItem.appendChild(img);
-                        ringItem.addEventListener('click', () => selectRing(ringSrc));
-                        ringList.appendChild(ringItem);
-                    }
-                });
-            });
+        ringImages.forEach(ringSrc => {
+            const ringItem = document.createElement('div');
+            ringItem.className = 'ring-item';
+            const img = document.createElement('img');
+            img.src = ringSrc;
+            img.alt = '반지';
+            ringItem.appendChild(img);
+            ringItem.addEventListener('click', () => selectRing(ringSrc));
+            ringList.appendChild(ringItem);
+        });
     }
 
     // 손 이미지 업로드 처리
@@ -197,13 +193,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // 손가락 랜드마크 그리기 (모든 마디 연결)
-            // 주석 처리하여 표시선 제거
-            // ctx.beginPath();
-            // ctx.moveTo(base.x * canvas.width, base.y * canvas.height);
-            // ctx.lineTo(firstJoint.x * canvas.width, firstJoint.y * canvas.height);
-            // ctx.lineTo(secondJoint.x * canvas.width, secondJoint.y * canvas.height);
-            // ctx.lineTo(tip.x * canvas.width, tip.y * canvas.height);
-            // ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(base.x * canvas.width, base.y * canvas.height);
+            ctx.lineTo(firstJoint.x * canvas.width, firstJoint.y * canvas.height);
+            ctx.lineTo(secondJoint.x * canvas.width, secondJoint.y * canvas.height);
+            ctx.lineTo(tip.x * canvas.width, tip.y * canvas.height);
+            ctx.stroke();
 
             // 모든 랜드마크 점 그리기
             [base, firstJoint, secondJoint, tip].forEach((point, index) => {
